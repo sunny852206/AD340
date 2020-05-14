@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">AD340 Weather</string>
+    <string name="forecast_details">Forecast Details</string>
+    <string name="display_units">Display Units</string>
 
     <string name="zipcode_entry_error">ERROR: Please enter valid zipcode</string>
 
