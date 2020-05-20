@@ -45,6 +45,7 @@ class CurrentForecastFragment : Fragment() {
         locationEntryButton.setOnClickListener {
             appNavigator.navigatorToLocationEntry()
         }
+        
 
         val dailyForecastList: RecyclerView = view.findViewById(R.id.dailyForecastList)
         dailyForecastList.layoutManager = LinearLayoutManager(requireContext())
