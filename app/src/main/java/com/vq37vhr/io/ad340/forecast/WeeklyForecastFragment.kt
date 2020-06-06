@@ -1,5 +1,4 @@
 package com.vq37vhr.io.ad340.forecast
-
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -16,7 +15,7 @@ import com.vq37vhr.io.ad340.*
 import com.vq37vhr.io.ad340.api.DailyForecast
 import com.vq37vhr.io.ad340.api.WeeklyForecast
 
-import com.vq37vhr.io.ad340.details.ForecastDetailsFragment
+import kotlinx.android.synthetic.main.fragment_location_entry.*
 
 /**
  * A simple [Fragment] subclass.
@@ -77,7 +76,10 @@ class WeeklyForecastFragment : Fragment() {
     private fun showForecastDetails(forecast: DailyForecast){
         val temp = forecast.temp.max
         val description = forecast.weather[0].description
-        val action = WeeklyForecastFragmentDirections.actionWeeklyForecastFragmentToForecastDetailsFragment(temp, description)
+        val action = WeeklyForecastFragmentDirections.actionWeeklyForecastFragmentToForecastDetailsFragment(temp,description)
+        val date = forecast.date
+        val icon = forecast.weather[0].icon
+
         findNavController().navigate(action)
     }
 

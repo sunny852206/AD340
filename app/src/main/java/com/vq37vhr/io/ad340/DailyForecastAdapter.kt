@@ -34,7 +34,7 @@ class DailyForecastViewHolder(
         dateText.text = DATE_FORMAT.format(Date(dailyForecast.date * 1000))
 
         val iconId = dailyForecast.weather[0].icon
-        forecastIcon.load("http://openweathermap.org.img.wn/${iconId}@2x.png")
+        forecastIcon.load("http://openweathermap.org/img/wn/${iconId}@2x.png")
     }
 }
 
