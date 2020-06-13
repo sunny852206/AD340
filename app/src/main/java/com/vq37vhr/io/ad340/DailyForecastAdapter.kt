@@ -20,11 +20,10 @@ private val DATE_FORMAT = SimpleDateFormat("MM-dd-yyyy")
 class DailyForecastViewHolder(
     view: View,
     private val tempDisplaySettingManager: TempDisplaySettingManager
-    )
-    : RecyclerView.ViewHolder(view) {
+) : RecyclerView.ViewHolder(view) {
 
-    private val tempText: TextView = view.findViewById(R.id.tempText)
-    private val descriptionText: TextView = view.findViewById(R.id.descriptionText)
+    private val tempText = view.findViewById<TextView>(R.id.tempText)
+    private val descriptionText = view.findViewById<TextView>(R.id.descriptionText)
     private val dateText = view.findViewById<TextView>(R.id.dateText)
     private val forecastIcon = view.findViewById<ImageView>(R.id.forecastIcon)
 
@@ -38,8 +37,7 @@ class DailyForecastViewHolder(
     }
 }
 
-
-class DailyForecastAdapter(
+class DailyForecastListAdapter(
     private val tempDisplaySettingManager: TempDisplaySettingManager,
     private val clickHandler: (DailyForecast) -> Unit
 ) : ListAdapter<DailyForecast, DailyForecastViewHolder>(DIFF_CONFIG) {
@@ -69,8 +67,7 @@ class DailyForecastAdapter(
                 return oldItem == newItem
             }
 
+
         }
     }
-
-
 }

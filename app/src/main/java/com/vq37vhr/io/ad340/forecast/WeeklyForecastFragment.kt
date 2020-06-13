@@ -14,17 +14,18 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.vq37vhr.io.ad340.*
 import com.vq37vhr.io.ad340.api.DailyForecast
 import com.vq37vhr.io.ad340.api.WeeklyForecast
-
+import com.vq37vhr.io.ad340.details.ForecastDetailsFragment
 import kotlinx.android.synthetic.main.fragment_location_entry.*
+import kotlinx.android.synthetic.main.fragment_weekly_forecast.*
 
 /**
  * A simple [Fragment] subclass.
  */
 class WeeklyForecastFragment : Fragment() {
 
+    private val forecastRepository = ForecastRepository()
     private lateinit var tempDisplaySettingManager: TempDisplaySettingManager
     private lateinit var locationRepository: LocationRepository
-    private val forecastRepository = ForecastRepository()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,10 +40,9 @@ class WeeklyForecastFragment : Fragment() {
 
         val dailyForecastList: RecyclerView = view.findViewById(R.id.dailyForecastList)
         dailyForecastList.layoutManager = LinearLayoutManager(requireContext())
-        val dailyForecastAdapter = DailyForecastAdapter(tempDisplaySettingManager) {
+        val dailyForecastAdapter = DailyForecastListAdapter(tempDisplaySettingManager) {
             showForecastDetails(it)
         }
-
         dailyForecastList.adapter = dailyForecastAdapter
 
         // Create the observer which updates the UI in response to forecast updates
@@ -73,13 +73,12 @@ class WeeklyForecastFragment : Fragment() {
         findNavController().navigate(action)
     }
 
-    private fun showForecastDetails(forecast: DailyForecast){
+    private fun showForecastDetails(forecast: DailyForecast) {
         val temp = forecast.temp.max
         val description = forecast.weather[0].description
-        val action = WeeklyForecastFragmentDirections.actionWeeklyForecastFragmentToForecastDetailsFragment(temp,description)
         val date = forecast.date
         val icon = forecast.weather[0].icon
-
+        val action = WeeklyForecastFragmentDirections.actionWeeklyForecastFragmentToForecastDetailsFragment(temp, description, date, icon)
         findNavController().navigate(action)
     }
 
@@ -96,5 +95,6 @@ class WeeklyForecastFragment : Fragment() {
             return fragment
         }
     }
-
 }
+
+
